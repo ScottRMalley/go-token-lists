@@ -3,6 +3,7 @@ package metadata
 import (
 	"errors"
 	"github.com/scottrmalley/go-evm-constants/networks"
+	"strings"
 )
 
 var ErrListNameNotFound = errors.New("no metadata with requested name found")
@@ -57,4 +58,14 @@ func TokenListMetadata(name Name) (Metadata, error) {
 		}
 	}
 	return Metadata{}, ErrListNameNotFound
+}
+
+func NameFrom(nameString string) (Name, error) {
+	name := Name(strings.ToLower(nameString))
+	for _, supported := range tokenLists {
+		if supported.Name == name {
+			return supported.Name, nil
+		}
+	}
+	return "", ErrListNameNotFound
 }

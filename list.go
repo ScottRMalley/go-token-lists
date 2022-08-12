@@ -7,6 +7,7 @@ import (
 	"github.com/scottrmalley/go-evm-constants/networks"
 	"github.com/scottrmalley/go-token-lists/metadata"
 	"math/big"
+	"strings"
 )
 
 var ErrSymbolNotUnique = errors.New("could not filter for unique token with given symbol")
@@ -56,7 +57,7 @@ func (l *List) TokenBySymbol(network networks.Name, symbol string) (*Token, erro
 	}
 	var matchingTokens []Token
 	for _, token := range tokens {
-		if token.Symbol == symbol {
+		if strings.ToLower(token.Symbol) == strings.ToLower(symbol) {
 			matchingTokens = append(matchingTokens, token)
 		}
 	}
@@ -76,6 +77,15 @@ func (l *List) TokenByAddress(network networks.Name, address common.Address) (*T
 	}
 	for _, token := range tokens {
 		if token.Address.Hex() == address.Hex() {
+			return &token, nil
+		}
+	}
+	return nil, ErrTokenNotFound
+}
+
+func (l *List) TokenBy(match func(*Token) bool) (*Token, error) {
+	for _, token := range l.data.Tokens {
+		if match(&token) {
 			return &token, nil
 		}
 	}
