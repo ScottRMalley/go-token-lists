@@ -32,7 +32,15 @@ var tokenLists = []Metadata{
 	pancakeswapDefaultList,
 }
 
-func GetSupportedLists(network networks.Name) []Name {
+func AllLists() []Name {
+	listNames := make([]Name, len(tokenLists))
+	for i, meta := range tokenLists {
+		listNames[i] = meta.Name
+	}
+	return listNames
+}
+
+func SupportedLists(network networks.Name) []Name {
 	var supported []Name
 	for _, list := range tokenLists {
 		if list.Supports(network) {
