@@ -91,3 +91,13 @@ func (l *List) TokenBy(match func(*Token) bool) (*Token, error) {
 	}
 	return nil, ErrTokenNotFound
 }
+
+func (l *List) FilterBy(match func(*Token) bool) []Token {
+	var matches []Token
+	for _, token := range l.data.Tokens {
+		if match(&token) {
+			matches = append(matches, token)
+		}
+	}
+	return matches
+}
