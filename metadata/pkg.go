@@ -31,6 +31,7 @@ var tokenLists = []Metadata{
 	pangolinList,
 	pancakeswapExtendedList,
 	pancakeswapDefaultList,
+	uniswapDefaultList,
 }
 
 func AllLists() []Name {

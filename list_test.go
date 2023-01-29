@@ -23,6 +23,7 @@ func (s *ListTestSuite) TestListFetching() {
 		metadata.PANCAKESWAP_EXTENDED,
 		metadata.PANGOLIN,
 		metadata.ELK_FINANCE,
+		metadata.UNISWAP_DEFAULT,
 	}
 	t.Run("should be able to fetch a metadata from every preconfigured metadata name", func(t *testing.T) {
 		for _, listName := range listNames {

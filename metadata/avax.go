@@ -7,7 +7,7 @@ var TRADER_JOE_DEFAULT Name = "trader-joe-default"
 var traderJoeList = Metadata{
 	Networks: []networks.Name{networks.AVALANCHE_MAINNET, networks.AVALANCHE_FUJI},
 	Name:     TRADER_JOE_DEFAULT,
-	Url:      "https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/joe.tokenlist.json",
+	Url:      "https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/avalanche.tokenlist.json",
 }
 
 var ELK_FINANCE Name = "elk-finance"
